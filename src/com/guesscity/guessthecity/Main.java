@@ -3,15 +3,13 @@ package com.guesscity.guessthecity;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
 import java.util.*;
-
-import static java.lang.Thread.sleep;
 
 public class Main extends Activity implements View.OnClickListener {
     private ImageView imageView;
@@ -20,6 +18,9 @@ public class Main extends Activity implements View.OnClickListener {
     private HashMap pictures_name;
     private Integer keyOfActivePicture;
     private List<Integer> remainderPictures = new ArrayList<Integer>();
+    Handler handler = new Handler();
+    Integer i = 0;
+    Integer lives = 3;
 
 
     /**
@@ -50,7 +51,6 @@ public class Main extends Activity implements View.OnClickListener {
 
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
-        processRightAnswer(button1);
 
 
     }
@@ -60,61 +60,98 @@ public class Main extends Activity implements View.OnClickListener {
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-            Toast.makeText(this, "End game", Toast.LENGTH_SHORT).show();
+        if (getLives() > 0) {
 
-    }
-
-    private void processRightAnswer(Button button) {
-            Toast.makeText(this, "RIGHT!!!!!", Toast.LENGTH_SHORT).show();
-              button.setBackgroundColor(Color.GREEN);
-             freeze((int) Integer.MAX_VALUE);
-              button.setBackgroundColor(Color.RED);
-
-
-
-
-    }
-
-    private void freeze(int delay){
-        for (int i = 0; i<delay; i++){
+            Toast.makeText(this, "You WON! Congratulations!!!!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "You lose. Try again", Toast.LENGTH_SHORT).show();
 
         }
 
     }
 
+    private void processRightAnswer(Button button) {
+
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                setRightButton(button);
+
+                if (i < 10) {
+                    handler.postDelayed(this, 100);
+                    i++;
+                } else {
+                    i = 0;
+                    handler.removeCallbacks(this);
+                    if (!lastQuestion()) {
+                        goToNextQuestion();
+                    } else {
+                        processEndGame();
+                    }
+
+                }
+
+
+            }
+
+        };
+
+        handler.post(runnable);
+
+
+    }
+
+
     private void goToNextQuestion() {
-            keyOfActivePicture = getRandomValue(remainderPictures);
-            loadMainPicture(keyOfActivePicture);
-            buttonsInitialization();
+        keyOfActivePicture = getRandomValue(remainderPictures);
+        loadMainPicture(keyOfActivePicture);
+        buttonsInitialization();
 
     }
 
     private Boolean lastQuestion() {
-       return remainderPictures.size() > 0 ? false : true;
+        return remainderPictures.size() > 0 ? false : true;
     }
 
-    private void processWrongAnswer() {
-            Toast.makeText(this, "WRONG!!!!!", Toast.LENGTH_SHORT).show();
+    private Integer getLives() {
+        return lives;
+    }
 
+    private void processWrongAnswer(Button button) {
+
+        setWrongButton(button);
+        if (getLives() > 0) {
+            --lives;
+        } else {
+            processEndGame();
+        }
+
+
+    }
+
+    private void setWrongButton(Button button) {
+        button.setClickable(false);
+        button.setBackgroundColor(Color.RED);
+
+    }
+
+    private void setRightButton(Button button) {
+        button.setClickable(false);
+        button.setBackgroundColor(Color.GREEN);
     }
 
     private void processTheAnswer(Button button, ImageView imageView) {
 
 
-            if ((Integer) button.getTag() == (Integer) imageView.getTag()) {
-                processRightAnswer(button);
+        if ((Integer) button.getTag() == (Integer) imageView.getTag()) {
+            processRightAnswer(button);
 
-                if (!lastQuestion()) {
-                    goToNextQuestion();
-                }
-                else {
-                    processEndGame();
-                }
-            }
-            else {
-                processWrongAnswer();
-            }
 
+        } else {
+            processWrongAnswer(button);
+        }
 
 
     }
@@ -192,6 +229,18 @@ public class Main extends Activity implements View.OnClickListener {
         button3.setTag(keyListOfPictures.get(2));
         button4.setTag(keyListOfPictures.get(3));
 
+        setDefaultButton(button1);
+        setDefaultButton(button2);
+        setDefaultButton(button3);
+        setDefaultButton(button4);
+
+
+
+    }
+
+    private void setDefaultButton(Button button) {
+        button.setClickable(true);
+        button.setBackgroundColor(Color.DKGRAY);
     }
 
 }
