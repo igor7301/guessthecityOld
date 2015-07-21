@@ -7,20 +7,22 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.*;
 
 public class Main extends Activity implements View.OnClickListener {
     private ImageView imageView;
+    private TextView livesTextView;
     private Button button1, button2, button3, button4;
     private HashMap pictures;
     private HashMap pictures_name;
     private Integer keyOfActivePicture;
     private List<Integer> remainderPictures = new ArrayList<Integer>();
-    Handler handler = new Handler();
-    Integer i = 0;
-    Integer lives = 3;
+    private Handler handler = new Handler();
+    private Integer counter = 0;
+    private Integer lives = 3;
 
 
     /**
@@ -32,6 +34,7 @@ public class Main extends Activity implements View.OnClickListener {
         setContentView(R.layout.main);
 
         imageView = (ImageView) findViewById(R.id.imageView);
+        livesTextView = (TextView) findViewById(R.id.livesTextView);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
@@ -46,6 +49,7 @@ public class Main extends Activity implements View.OnClickListener {
         pictures = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.city_pictures);
         pictures_name = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.city_names);
 
+        updateLives();
         init(remainderPictures);
         keyOfActivePicture = getRandomValue(remainderPictures);
 
@@ -55,16 +59,19 @@ public class Main extends Activity implements View.OnClickListener {
 
     }
 
+    private void updateLives() {
+        livesTextView.setText("Lives: " + lives);
+    }
+
     private void processEndGame() {
         button1.setEnabled(false);
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-        if (getLives() > 0) {
+        if (lives > 0) {
 
             Toast.makeText(this, "You WON! Congratulations!!!!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(this, "You lose. Try again", Toast.LENGTH_SHORT).show();
 
         }
@@ -77,13 +84,14 @@ public class Main extends Activity implements View.OnClickListener {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                setRightButton(button);
+                processRightButton(button);
+                setAllButtonsClickable(false);
 
-                if (i < 10) {
+                if (counter < 10) {
                     handler.postDelayed(this, 100);
-                    i++;
+                    counter++;
                 } else {
-                    i = 0;
+                    counter = 0;
                     handler.removeCallbacks(this);
                     if (!lastQuestion()) {
                         goToNextQuestion();
@@ -115,31 +123,40 @@ public class Main extends Activity implements View.OnClickListener {
         return remainderPictures.size() > 0 ? false : true;
     }
 
-    private Integer getLives() {
-        return lives;
-    }
 
     private void processWrongAnswer(Button button) {
 
-        setWrongButton(button);
-        if (getLives() > 0) {
-            --lives;
-        } else {
+        lives--;
+        processWrongButton(button);
+        updateLives();
+
+        if(lives == 0) {
             processEndGame();
         }
 
 
     }
 
-    private void setWrongButton(Button button) {
-        button.setClickable(false);
-        button.setBackgroundColor(Color.RED);
+    private void setAllButtonsClickable(Boolean condition) {
+
+        button1.setClickable(condition);
+        button2.setClickable(condition);
+        button3.setClickable(condition);
+        button4.setClickable(condition);
+
 
     }
 
-    private void setRightButton(Button button) {
+    private void processWrongButton(Button button) {
+        button.setBackgroundColor(Color.RED);
         button.setClickable(false);
+
+    }
+
+
+    private void processRightButton(Button button) {
         button.setBackgroundColor(Color.GREEN);
+        button.setClickable(false);
     }
 
     private void processTheAnswer(Button button, ImageView imageView) {
@@ -229,16 +246,15 @@ public class Main extends Activity implements View.OnClickListener {
         button3.setTag(keyListOfPictures.get(2));
         button4.setTag(keyListOfPictures.get(3));
 
-        setDefaultButton(button1);
-        setDefaultButton(button2);
-        setDefaultButton(button3);
-        setDefaultButton(button4);
-
+        initDefaultButton(button1);
+        initDefaultButton(button2);
+        initDefaultButton(button3);
+        initDefaultButton(button4);
 
 
     }
 
-    private void setDefaultButton(Button button) {
+    private void initDefaultButton(Button button) {
         button.setClickable(true);
         button.setBackgroundColor(Color.DKGRAY);
     }
