@@ -5,16 +5,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import java.util.*;
 
 public class Main extends Activity implements View.OnClickListener {
-    private ImageView imageView;
-    private TextView livesTextView;
+    private LinearLayout mainLinearLayout;
+    private RatingBar livesWidget;
+    private ProgressBar progressBar;
     private Button button1, button2, button3, button4;
     private HashMap pictures;
     private HashMap pictures_name;
@@ -33,8 +31,9 @@ public class Main extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
-        livesTextView = (TextView) findViewById(R.id.livesTextView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        livesWidget = (RatingBar) findViewById(R.id.ratingBar);
+        mainLinearLayout = (LinearLayout) findViewById(R.id.mainLayout);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
@@ -56,6 +55,10 @@ public class Main extends Activity implements View.OnClickListener {
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
 
+        progressBar.setMax(getAmountOfAllQuestions());
+//        progressBar.incrementProgressBy(1);
+        progressBar.setProgress(0);
+
 
     }
 
@@ -68,7 +71,12 @@ public class Main extends Activity implements View.OnClickListener {
     }
 
     private void updateLives() {
-        livesTextView.setText("Lives: " + lives);
+        livesWidget.setRating(lives);
+        livesWidget.setIsIndicator(true);
+    }
+
+    private void updateProgress() {
+        progressBar.setProgress(getNumberOfActiveQuestion());
     }
 
     private void processEndGame() {
@@ -125,6 +133,7 @@ public class Main extends Activity implements View.OnClickListener {
 
 
     private void goToNextQuestion() {
+        updateProgress();
         keyOfActivePicture = getRandomValue(remainderPictures);
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
@@ -171,10 +180,10 @@ public class Main extends Activity implements View.OnClickListener {
         button.setClickable(false);
     }
 
-    private void processTheAnswer(Button button, ImageView imageView) {
+    private void processTheAnswer(Button button, LinearLayout layout) {
 
 
-        if ((Integer) button.getTag() == (Integer) imageView.getTag()) {
+        if ((Integer) button.getTag() == (Integer) layout.getTag()) {
             processRightAnswer(button);
 
 
@@ -191,16 +200,16 @@ public class Main extends Activity implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.button1:
-                processTheAnswer(button1, imageView);
+                processTheAnswer(button1, mainLinearLayout);
                 break;
             case R.id.button2:
-                processTheAnswer(button2, imageView);
+                processTheAnswer(button2, mainLinearLayout);
                 break;
             case R.id.button3:
-                processTheAnswer(button3, imageView);
+                processTheAnswer(button3, mainLinearLayout);
                 break;
             case R.id.button4:
-                processTheAnswer(button4, imageView);
+                processTheAnswer(button4, mainLinearLayout);
                 break;
             default:
                 break;
@@ -229,8 +238,9 @@ public class Main extends Activity implements View.OnClickListener {
     private void loadMainPicture(Integer num) {
         int res = getResources()
                 .getIdentifier((String) pictures.get((num).toString()), "drawable", "com.guesscity.guessthecity");
-        imageView.setImageResource(res);
-        imageView.setTag(num);
+
+        mainLinearLayout.setBackgroundResource(res);
+        mainLinearLayout.setTag(num);
     }
 
     private void buttonsInitialization() {
