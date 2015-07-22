@@ -59,6 +59,14 @@ public class Main extends Activity implements View.OnClickListener {
 
     }
 
+    private Integer getAmountOfAllQuestions() {
+        return pictures.size();
+    }
+
+    private Integer getAmountOfRemainderQuestions() {
+      return remainderPictures.size();
+    }
+
     private void updateLives() {
         livesTextView.setText("Lives: " + lives);
     }
@@ -76,6 +84,10 @@ public class Main extends Activity implements View.OnClickListener {
 
         }
 
+    }
+
+    private Integer getNumberOfActiveQuestion(){
+        return (getAmountOfAllQuestions()  - getAmountOfRemainderQuestions());
     }
 
     private void processRightAnswer(Button button) {
