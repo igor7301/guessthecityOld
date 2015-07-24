@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">guessthecity</string>
+    <string name="APP_PREFERENCES">mysettings</string>
+    <string name="APP_PREFERENCES_CITY_GAME">city_game</string>
 </resources>
