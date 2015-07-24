@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<map name="picturemaptest">
+<map name="pictures_file_names">
         <entry key="1">ic_launcher</entry>
         <entry key="2">light</entry>
         <entry key="3">torch</entry>

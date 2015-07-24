@@ -7,13 +7,17 @@
 
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
 
-        <activity android:name=".Main"
+        <activity android:name="com.guesscity.guessthecity.StartActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="com.guesscity.guessthecity.MainActivity"/>
+        <activity android:name="com.guesscity.guessthecity.SettingsActivity"/>
+
     </application>
 
 

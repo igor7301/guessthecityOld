@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<map name="picturemaptest">
+<map name="city">
     <entry key="1">android</entry>
     <entry key="2">light</entry>
     <entry key="3">torch</entry>

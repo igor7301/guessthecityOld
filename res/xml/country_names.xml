@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<map name="county">
+    <entry key="1">android_county</entry>
+    <entry key="2">light_country</entry>
+    <entry key="3">torch_country</entry>
+    <entry key="4">Rio_country</entry>
+    <entry key="5">chicago_country</entry>
+</map>
