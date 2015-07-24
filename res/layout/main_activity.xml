@@ -8,7 +8,10 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayoutTopBar" android:layout_alignParentTop="true" android:layout_alignParentStart="true">
+            android:id="@+id/linearLayoutTopBar" android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true">
+
         <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,6 +28,7 @@
                   android:orientation="vertical"
                   android:gravity="center_horizontal|center_vertical"
             android:layout_centerVertical="true" android:layout_alignParentStart="true"
+                  android:layout_alignParentLeft="true"
             android:id="@+id/linearLayoutEndGame">
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -47,8 +51,12 @@
 
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:orientation="horizontal"
-                  android:layout_weight="4" android:gravity="bottom" android:layout_alignParentEnd="false"
-                  android:layout_alignParentStart="false" android:layout_alignParentBottom="true"
+                  android:layout_weight="4" android:gravity="bottom"
+                  android:layout_alignParentRight="false"
+                  android:layout_alignParentEnd="false"
+                  android:layout_alignParentStart="false"
+                  android:layout_alignParentLeft="false"
+                  android:layout_alignParentBottom="true"
                   android:id="@+id/linearLayoutAnswerButtons">
 
 

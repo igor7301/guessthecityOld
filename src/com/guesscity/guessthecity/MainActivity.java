@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.*;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private SharedPreferences mSettings;
@@ -27,8 +30,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private HashMap pictures_name;
     private Integer keyOfActivePicture;
     private List<Integer> remainderPictures = new ArrayList<Integer>();
-    private Handler handler = new Handler();
-    private Integer counter = 0;
+    private final Handler handler = new Handler();
     private Integer currentLives;
     private final static Integer LIVES = 3;
     private Bundle savedInstanceState;
@@ -78,8 +80,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         if (city) {
             pictures_name = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.city_names);
-        }
-        else {
+        } else {
             pictures_name = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.country_names);
 
         }
@@ -137,39 +138,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return (getAmountOfAllQuestions() - getAmountOfRemainderQuestions());
     }
 
-    private void processRightAnswer(Button button) {
-
-
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                processRightButton(button);
-                setAllButtonsClickable(false);
-
-                if (counter < 10) {
-                    handler.postDelayed(this, 100);
-                    counter++;
-                } else {
-                    counter = 0;
-                    handler.removeCallbacks(this);
-                    if (!lastQuestion()) {
-                        goToNextQuestion();
-                    } else {
-                        processEndGame();
-                    }
-
-                }
-
-
-            }
-
-        };
-
-        handler.post(runnable);
-
-
-    }
-
 
     private void goToNextQuestion() {
         updateProgress();
@@ -184,19 +152,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
 
-    private void processWrongAnswer(Button button) {
-
-        currentLives--;
-        processWrongButton(button);
-        updateLives(currentLives);
-
-        if (currentLives == 0) {
-            processEndGame();
-        }
-
-
-    }
-
     private void setAllButtonsClickable(Boolean condition) {
 
         button1.setClickable(condition);
@@ -207,16 +162,89 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private void processRightAnswer(Button button) {
+
+        processRightButton(button);
+        setAllButtonsClickable(false);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!lastQuestion()) {
+
+
+                    goToNextQuestion();
+
+                } else {
+
+                    processEndGame();
+                }
+            }
+        }, 1000);
+
+
+    }
+
+
+    private void processWrongAnswer(Button button) {
+
+        currentLives--;
+        updateLives(currentLives);
+        processWrongButton(button);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (currentLives == 0) {
+                    processEndGame();
+                } else {
+
+                    processRightAnswer(getCorrectAnswerButton());
+
+                }
+            }
+        }, 1000);
+
+
+
+
+    }
+
     private void processWrongButton(Button button) {
-        button.setBackgroundColor(Color.RED);
         button.setClickable(false);
+        button.setBackgroundResource(R.anim.incorrect_button);
+        AnimationDrawable anim = (AnimationDrawable) button.getBackground();
+        anim.start();
 
     }
 
 
     private void processRightButton(Button button) {
-        button.setBackgroundColor(Color.GREEN);
         button.setClickable(false);
+        button.setBackgroundResource(R.anim.correct_button);
+        AnimationDrawable anim = (AnimationDrawable) button.getBackground();
+        anim.start();
+    }
+
+    private Button getCorrectAnswerButton() {
+        if ((Integer) button1.getTag() == (Integer) relativeLayout.getTag()) {
+
+            return button1;
+        } else if ((Integer) button2.getTag() == (Integer) relativeLayout.getTag())
+
+        {
+            return button2;
+        } else if ((Integer) button3.getTag() == (Integer) relativeLayout.getTag())
+
+        {
+            return button3;
+        } else if ((Integer) button4.getTag() == (Integer) relativeLayout.getTag())
+
+        {
+            return button4;
+        }
+        return null;
+
+
     }
 
     private void processTheAnswer(Button button, RelativeLayout layout) {
