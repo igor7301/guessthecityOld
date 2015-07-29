@@ -126,23 +126,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         String message;
         linearLayoutAnswerButtons.setVisibility(View.INVISIBLE);
-        relativeLayoutTopBar.setAlpha((float) 0.5);
+//        relativeLayoutTopBar.setAlpha((float) 0.5);
 
 
 
 
-        textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
-        textViewEndGameMessage.setTextSize(40);
+//        textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
+        textViewEndGameMessage.setTextSize(20);
         if (currentLives > 0) {
             message = "ВЫ ВЫЙГРАЛИ!";
-
-            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
+//            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
 
 
 
         } else {
             message = "ВЫ ПРОИГРАЛИ.\nПОПРОБУЙТЕ ЕЩЕ РАЗ";
-            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.unsuccessEndGame));
+//            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.unsuccessEndGame));
 
         }
         textViewEndGameMessage.setGravity(Gravity.CENTER);
