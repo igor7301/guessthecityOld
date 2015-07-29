@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -95,7 +94,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         updateLives(LIVES);
         init(remainderPictures);
-        keyOfActivePicture = getRandomValue(remainderPictures);
+        keyOfActivePicture = getUniqueRandomValue(remainderPictures);
 
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
@@ -158,7 +157,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     private void goToNextQuestion() {
-        keyOfActivePicture = getRandomValue(remainderPictures);
+        keyOfActivePicture = getUniqueRandomValue(remainderPictures);
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
         updateProgress();
@@ -374,15 +373,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    private Integer getRandomValue(List<Integer> list) {
+    private <T> T getUniqueRandomValue(List<T> list) {
 
         Integer randInt = new Random().nextInt(list.size());
 
-        Integer retValue = list.get(randInt);
+        T retValue = list.get(randInt);
         list.remove(list.indexOf(retValue));
         return retValue;
-
-
     }
 
     private void loadMainPicture(Integer num) {
@@ -397,30 +394,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+
     private void buttonsInitialization() {
 
-        Integer val1 = keyOfActivePicture;
-        Integer val2 = 1 + new Random().nextInt(pictures_name.size());
-        Integer val3 = 1 + new Random().nextInt(pictures_name.size());
-        Integer val4 = 1 + new Random().nextInt(pictures_name.size());
 
 
-        List<Integer> keyListOfPictures = new ArrayList<Integer>();
-        keyListOfPictures.add(val1);
-        keyListOfPictures.add(val2);
-        keyListOfPictures.add(val3);
-        keyListOfPictures.add(val4);
-        Collections.shuffle(keyListOfPictures);
+        List<Integer> keyOfPicture = new ArrayList<Integer>();
+        init(keyOfPicture);
+
+        List<Integer> keyOfPictures = new ArrayList<Integer>();
+        keyOfPictures.add(keyOfActivePicture);
+        removeValue(keyOfPicture, keyOfActivePicture);
+        keyOfPictures.add(getUniqueRandomValue(keyOfPicture));
+        keyOfPictures.add(getUniqueRandomValue(keyOfPicture));
+        keyOfPictures.add(getUniqueRandomValue(keyOfPicture));
+        Collections.shuffle(keyOfPictures);
 
 
-        button1.setText(pictures_name.get(keyListOfPictures.get(0).toString()).toString());
-        button2.setText(pictures_name.get(keyListOfPictures.get(1).toString()).toString());
-        button3.setText(pictures_name.get(keyListOfPictures.get(2).toString()).toString());
-        button4.setText(pictures_name.get(keyListOfPictures.get(3).toString()).toString());
-        button1.setTag(keyListOfPictures.get(0));
-        button2.setTag(keyListOfPictures.get(1));
-        button3.setTag(keyListOfPictures.get(2));
-        button4.setTag(keyListOfPictures.get(3));
+        button1.setText(pictures_name.get(keyOfPictures.get(0).toString()).toString());
+        button2.setText(pictures_name.get(keyOfPictures.get(1).toString()).toString());
+        button3.setText(pictures_name.get(keyOfPictures.get(2).toString()).toString());
+        button4.setText(pictures_name.get(keyOfPictures.get(3).toString()).toString());
+
+        button1.setTag(keyOfPictures.get(0));
+        button2.setTag(keyOfPictures.get(1));
+        button3.setTag(keyOfPictures.get(2));
+        button4.setTag(keyOfPictures.get(3));
 
         initDefaultButton(button1);
         initDefaultButton(button2);
@@ -430,6 +429,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         linearLayoutEndGame.setVisibility(View.INVISIBLE);
 
 
+    }
+
+    private <T> void removeValue(List<T> list, T value) {
+       list.remove(list.indexOf(value));
     }
 
     private void initDefaultButton(Button button) {

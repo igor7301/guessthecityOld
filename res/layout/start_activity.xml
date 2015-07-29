@@ -14,12 +14,12 @@
             android:id="@+id/buttonStartGame"
             android:background="@drawable/default_button"
             android:minWidth="150dp"
-            />
+            android:layout_margin="10dp"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Settings"
             android:background="@drawable/default_button"
             android:minWidth="150dp"
-            android:id="@+id/buttonSettings"/>
+            android:id="@+id/buttonSettings" android:layout_margin="10dp"/>
 </LinearLayout>
