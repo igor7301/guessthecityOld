@@ -83,17 +83,19 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RestartGame"
+                android:text="ЗАНОВО"
                 android:id="@+id/buttonRestartGame"
                 android:background="@drawable/default_button" android:layout_margin="7dp" android:textStyle="italic"
-                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
+                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
+                android:textColor="#ffffffff"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="QuitGame"
+                android:text="ВЫЙТИ"
                 android:id="@+id/buttonQuitGame"
                 android:background="@drawable/default_button" android:layout_margin="7dp" android:textStyle="italic"
-                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
+                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
+                android:textColor="#ffffffff"/>
     </LinearLayout>
 
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -119,14 +121,16 @@
                 android:text="Button1"
                 android:id="@+id/button1" android:singleLine="false"
                 android:background="@drawable/default_button" android:layout_margin="5dp" android:textStyle="italic"
-                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
+                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
+                android:textColor="#ffffffff"/>
 
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button2"
                 android:id="@+id/button2" android:background="@drawable/default_button" android:layout_margin="5dp"
-                android:textStyle="italic" android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
+                android:textStyle="italic" android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
+                android:textColor="#ffffffff"/>
 
         </LinearLayout>
 
@@ -141,14 +145,15 @@
                 android:layout_height="wrap_content"
                 android:text="Button3"
                 android:id="@+id/button3" android:background="@drawable/default_button" android:layout_margin="5dp"
-                android:textStyle="italic" android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
+                android:textStyle="italic" android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
+                android:textColor="#ffffffff"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button4"
             android:id="@+id/button4"
             android:background="@drawable/default_button" android:layout_margin="5dp" android:textStyle="italic"
-            android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
+            android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1" android:textColor="#ffffffff"/>
 
         </LinearLayout>
 

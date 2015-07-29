@@ -17,14 +17,14 @@
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="City"
+                android:text="ГОРОДА"
                 android:id="@+id/radioBtnCity"
 
-                />
+                android:checked="false" android:textColor="#ffffffff"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Country"
-                android:id="@+id/radioBtnCountry" android:checked="false"/>
+                android:text="СТРАНЫ"
+                android:id="@+id/radioBtnCountry" android:checked="false" android:textColor="#ffffffff"/>
     </RadioGroup>
 </LinearLayout>

@@ -10,16 +10,16 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start"
+            android:text="СТАРТ"
             android:id="@+id/buttonStartGame"
             android:background="@drawable/default_button"
             android:minWidth="150dp"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp" android:textColor="#ffffffff"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="НАСТРОЙКИ"
             android:background="@drawable/default_button"
             android:minWidth="150dp"
-            android:id="@+id/buttonSettings" android:layout_margin="10dp"/>
+            android:id="@+id/buttonSettings" android:layout_margin="10dp" android:textColor="#ffffffff"/>
 </LinearLayout>

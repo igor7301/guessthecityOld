@@ -134,14 +134,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
         textViewEndGameMessage.setTextSize(40);
         if (currentLives > 0) {
-            message = "CONGRATULATIONS!\nYOU WON";
+            message = "ВЫ ВЫЙГРАЛИ!";
 
             textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
 
 
 
         } else {
-            message = "YOU LOSE!\nTRY AGAIN";
+            message = "ВЫ ПРОИГРАЛИ.\nПОПРОБУЙТЕ ЕЩЕ РАЗ";
             textViewEndGameMessage.setTextColor(getResources().getColor(R.color.unsuccessEndGame));
 
         }
