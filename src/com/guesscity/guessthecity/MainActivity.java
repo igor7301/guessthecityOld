@@ -3,31 +3,36 @@ package com.guesscity.guessthecity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.*;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity implements View.OnClickListener {
+    private ImageView imageViewHint;
+    private ImageView imageViewMainPicture;
     private SharedPreferences mSettings;
-    private RadioButton radioCity, radioCountry;
+    private TextView textViewProgress;
     private RelativeLayout relativeLayout;
-    private LinearLayout linearLayoutTopBar;
+    private RelativeLayout relativeLayoutTopBar;
     private LinearLayout linearLayoutEndGame;
     private LinearLayout linearLayoutAnswerButtons;
     private TextView textViewEndGameMessage;
     private RatingBar livesWidget;
-    private ProgressBar progressBar;
     private Button btnRestartGame, btnQuitGame;
     private Button button1, button2, button3, button4;
     private HashMap pictures;
     private HashMap pictures_name;
+    private HashMap pictures_hints;
     private Integer keyOfActivePicture;
     private List<Integer> remainderPictures = new ArrayList<Integer>();
     private final Handler handler = new Handler();
@@ -45,10 +50,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         this.savedInstanceState = savedInstanceState;
         setContentView(R.layout.main_activity);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         livesWidget = (RatingBar) findViewById(R.id.ratingBar);
         relativeLayout = (RelativeLayout) findViewById(R.id.mainLayout);
-        linearLayoutTopBar = (LinearLayout) findViewById(R.id.linearLayoutTopBar);
+        relativeLayoutTopBar = (RelativeLayout) findViewById(R.id.relativeLayoutTopBar);
         linearLayoutAnswerButtons = (LinearLayout) findViewById(R.id.linearLayoutAnswerButtons);
         linearLayoutEndGame = (LinearLayout) findViewById(R.id.linearLayoutEndGame);
         button1 = (Button) findViewById(R.id.button1);
@@ -58,7 +62,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnRestartGame = (Button) findViewById(R.id.buttonRestartGame);
         btnQuitGame = (Button) findViewById(R.id.buttonQuitGame);
         textViewEndGameMessage = (TextView) findViewById(R.id.textViewEndGameMessage);
-        radioCity = (RadioButton) findViewById(R.id.radioBtnCity);
+        textViewProgress = (TextView) findViewById(R.id.textViewProgress);
+        imageViewHint = (ImageView) findViewById(R.id.imageViewHint);
+        imageViewMainPicture = (ImageView) findViewById(R.id.imageViewMainPicture);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -66,24 +72,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
         button4.setOnClickListener(this);
         btnRestartGame.setOnClickListener(this);
         btnQuitGame.setOnClickListener(this);
+        imageViewHint.setOnClickListener(this);
 
 
         pictures = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.pictures);
 
         mSettings = getSharedPreferences(getResources().getString(R.string.APP_PREFERENCES).toString(), Context.MODE_PRIVATE);
-        Boolean city = true;
-        if (mSettings.contains(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString())) {
-            // Получаем число из настроек
-            city = mSettings.getBoolean(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString(), true);
 
-        }
+        Boolean city = mSettings.getBoolean(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString(), true);;
+
+//        if (mSettings.contains(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString()))
 
         if (city) {
             pictures_name = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.city_names);
+            pictures_hints = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.city_hints);
         } else {
             pictures_name = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.country_names);
-
+            pictures_hints = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.country_hints);
         }
+
 
 
         updateLives(LIVES);
@@ -93,8 +100,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
 
-        progressBar.setMax(getAmountOfAllQuestions());
-        progressBar.setProgress(0);
+        updateProgress();
 
 
     }
@@ -114,21 +120,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateProgress() {
-        progressBar.setProgress(getNumberOfActiveQuestion());
+        textViewProgress.setText(getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
     }
 
     private void processEndGame() {
 
         String message;
         linearLayoutAnswerButtons.setVisibility(View.INVISIBLE);
-        linearLayoutTopBar.setAlpha((float) 0.5);
+        relativeLayoutTopBar.setAlpha((float) 0.5);
 
+
+
+
+        textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
+        textViewEndGameMessage.setTextSize(40);
         if (currentLives > 0) {
-            message = "YOU WIN! CONGRATULATIONS!";
+            message = "CONGRATULATIONS!\nYOU WON";
+
+            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
+
+
 
         } else {
-            message = "YOU LOSE! TRY AGAIN";
+            message = "YOU LOSE!\nTRY AGAIN";
+            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.unsuccessEndGame));
+
         }
+        textViewEndGameMessage.setGravity(Gravity.CENTER);
         textViewEndGameMessage.setText(message);
         linearLayoutEndGame.setVisibility(View.VISIBLE);
 
@@ -140,10 +158,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     private void goToNextQuestion() {
-        updateProgress();
         keyOfActivePicture = getRandomValue(remainderPictures);
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
+        updateProgress();
 
     }
 
@@ -164,13 +182,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void processRightAnswer(Button button) {
 
-        processRightButton(button);
         setAllButtonsClickable(false);
+        processRightButton(button);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!lastQuestion()) {
+                if (!lastQuestion() && currentLives != 0) {
 
 
                     goToNextQuestion();
@@ -188,19 +206,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void processWrongAnswer(Button button) {
 
+        setAllButtonsClickable(false);
         currentLives--;
         updateLives(currentLives);
         processWrongButton(button);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (currentLives == 0) {
-                    processEndGame();
-                } else {
-
-                    processRightAnswer(getCorrectAnswerButton());
-
-                }
+                processRightAnswer(getCorrectAnswerButton());
             }
         }, 1000);
 
@@ -225,19 +238,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         anim.start();
     }
 
+    public ImageView getImageViewMainPicture() {
+        return imageViewMainPicture;
+    }
+
     private Button getCorrectAnswerButton() {
-        if ((Integer) button1.getTag() == (Integer) relativeLayout.getTag()) {
+        if ((Integer) button1.getTag() == (Integer) getImageViewMainPicture().getTag()) {
 
             return button1;
-        } else if ((Integer) button2.getTag() == (Integer) relativeLayout.getTag())
+        } else if ((Integer) button2.getTag() == (Integer) getImageViewMainPicture().getTag())
 
         {
             return button2;
-        } else if ((Integer) button3.getTag() == (Integer) relativeLayout.getTag())
+        } else if ((Integer) button3.getTag() == (Integer) getImageViewMainPicture().getTag())
 
         {
             return button3;
-        } else if ((Integer) button4.getTag() == (Integer) relativeLayout.getTag())
+        } else if ((Integer) button4.getTag() == (Integer) getImageViewMainPicture().getTag())
 
         {
             return button4;
@@ -247,10 +264,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-    private void processTheAnswer(Button button, RelativeLayout layout) {
+    private void processTheAnswer(Button button) {
 
 
-        if ((Integer) button.getTag() == (Integer) layout.getTag()) {
+        if ((Integer) button.getTag() == (Integer) getImageViewMainPicture().getTag()) {
             processRightAnswer(button);
 
 
@@ -267,16 +284,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.button1:
-                processTheAnswer(button1, relativeLayout);
+                processTheAnswer(button1);
                 break;
             case R.id.button2:
-                processTheAnswer(button2, relativeLayout);
+                processTheAnswer(button2);
                 break;
             case R.id.button3:
-                processTheAnswer(button3, relativeLayout);
+                processTheAnswer(button3);
                 break;
             case R.id.button4:
-                processTheAnswer(button4, relativeLayout);
+                processTheAnswer(button4);
                 break;
             case R.id.buttonRestartGame:
                 onCreate(savedInstanceState);
@@ -284,11 +301,67 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.buttonQuitGame:
                 onBackPressed();
                 break;
+            case R.id.imageViewHint:
+                processHint();
+                break;
 
             default:
                 break;
 
         }
+    }
+
+    private void processHint() {
+
+        Toast toast = Toast.makeText(this,  getHint(keyOfActivePicture), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    private String getHint(Integer key) {
+        return (String) pictures_hints.get(key.toString());
     }
 
 
@@ -314,10 +387,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void loadMainPicture(Integer num) {
         int res = getResources()
+
                 .getIdentifier((String) pictures.get((num).toString()), "drawable", "com.guesscity.guessthecity");
 
-        relativeLayout.setBackgroundResource(res);
-        relativeLayout.setTag(num);
+        imageViewMainPicture.setImageBitmap(decodeSampledBitmapFromResource(getResources(), res,
+                480, 480));
+
+        imageViewMainPicture.setTag(num);
+
     }
 
     private void buttonsInitialization() {
@@ -357,7 +434,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void initDefaultButton(Button button) {
         button.setClickable(true);
-        button.setBackgroundColor(Color.DKGRAY);
+        button.setBackgroundResource(R.drawable.default_button);
     }
 
 }

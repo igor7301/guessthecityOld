@@ -61,6 +61,18 @@ public class MainTest extends ActivityInstrumentationTestCase2<MainActivity> {
         }
     }
 
+    public void testNoPicturesWithSameNumbers( ){
+        Map<String, String> city_pic = (HashMap < String, String >) ResourceUtils
+                .getHashMapResource(mainAct.getApplicationContext(), R.xml.pictures);
+
+
+//        for (String s : city_pic.keySet()) {
+//
+//            assertTrue("Picture with key: '" + s +
+//                    "' doesn't exist in pictures map - " + country_name.toString(), country_name.containsKey(s));
+//        }
+    }
+
 
     public void testNoPictureWithSameNames() {
 

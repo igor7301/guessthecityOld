@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<map name="county">
+<map name="city">
     <entry key="1">Нидерланды</entry>
     <entry key="2">Австрия</entry>
     <entry key="3">Испания</entry>
@@ -37,5 +37,4 @@
     <entry key="35">Тайланд</entry>
     <entry key="36">Эстония</entry>
     <entry key="36">Япония</entry>
-
 </map>

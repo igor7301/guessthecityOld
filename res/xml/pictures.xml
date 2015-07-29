@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <map name="pictures_file_names">
-        <entry key="1">ic_launcher</entry>
-        <entry key="2">light</entry>
-        <entry key="3">torch</entry>
-        <entry key="4">rio</entry>
-        <entry key="5">chicago</entry>
+        <entry key="1">amsterdam</entry>
+        <entry key="2">austria_hallstat</entry>
+        <entry key="3">barcelona</entry>
+        <entry key="4">canada_vancouver</entry>
+        <entry key="5">germany_munhen</entry>
+        <entry key="6">germany_wirzburg</entry>
+        <entry key="7">gongong</entry>
+        <entry key="8">greece_santorini</entry>
+        <entry key="9">india</entry>
+        <entry key="10">islandiya_reikyavik</entry>
+        <entry key="11">italy_portofino</entry>
+        <entry key="12">italy_rim</entry>
+        <entry key="13">italy_venice</entry>
+        <entry key="14">keiptown</entry>
+        <entry key="15">kitai_guansi</entry>
+        <entry key="16">krim</entry>
+        <entry key="17">las_vegas</entry>
+        <entry key="18">london</entry>
+        <entry key="19">los_angeles</entry>
+        <entry key="20">macao</entry>
+        <entry key="21">machu_pukchu</entry>
+        <entry key="22">monaco</entry>
+        <entry key="23">montenegro</entry>
+        <entry key="24">moscow</entry>
+        <entry key="25">new_york</entry>
+        <entry key="26">norway</entry>
+        <entry key="27">pague</entry>
+        <entry key="28">paris</entry>
+        <entry key="29">petergoff</entry>
+        <entry key="30">rio</entry>
+        <entry key="31">seul</entry>
+        <entry key="32">sfo</entry>
+        <entry key="33">shanhai</entry>
+        <entry key="34">singapour</entry>
+        <entry key="35">tailand2</entry>
+        <entry key="36">talling</entry>
+        <entry key="36">tokio</entry>
+
+
 </map>

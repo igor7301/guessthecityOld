@@ -3,26 +3,68 @@
               android:layout_width="match_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
-              android:id="@+id/mainLayout" android:background="@drawable/chicago">
-    <LinearLayout
+              android:id="@+id/mainLayout" >
+
+    <ImageView android:layout_width="fill_parent"
+               android:layout_height="fill_parent"
+               android:id="@+id/imageViewMainPicture"
+               android:scaleType="fitXY"
+            />
+
+
+
+
+    <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayoutTopBar" android:layout_alignParentTop="true"
+            android:id="@+id/relativeLayoutTopBar"
+            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true">
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical">
 
-        <RatingBar
+
+            <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ratingBar"
+                    android:numStars="3"
+                    android:rating="3"
+                    style="@style/CustomRatingBar" android:layout_margin="10dp"/>
+
+
+                <ImageView android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:maxHeight="20dp"
+                           android:maxWidth="20dp"
+                           android:id="@+id/imageViewHint"
+                           android:src="@drawable/hint"
+                           android:layout_marginLeft="20dp"
+                           android:layout_marginStart="20dp"
+                           android:layout_centerVertical="true"
+                           android:layout_toRightOf="@+id/ratingBar"
+                           android:layout_toEndOf="@+id/ratingBar"/>
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:numStars="3" android:rating="3"/>
-        <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar" android:layout_gravity="center"/>
-    </LinearLayout>
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="xx/xx"
+                android:id="@+id/textViewProgress"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
 
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:orientation="vertical"
@@ -31,22 +73,27 @@
                   android:layout_alignParentLeft="true"
             android:id="@+id/linearLayoutEndGame">
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <TextView android:layout_width="fill_parent" android:layout_height="fill_parent"
                   android:id="@+id/textViewEndGameMessage"
-                android:text="END GAME"
-                  android:textStyle="bold"/>
+                  android:text="END GAME"
+                  android:textStyle="bold"
+                  android:textSize="25dp"
+                  android:gravity="center"
+                  android:layout_margin="7dp"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RestartGame"
                 android:id="@+id/buttonRestartGame"
-                />
+                android:background="@drawable/default_button" android:layout_margin="7dp" android:textStyle="italic"
+                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="QuitGame"
                 android:id="@+id/buttonQuitGame"
-                />
+                android:background="@drawable/default_button" android:layout_margin="7dp" android:textStyle="italic"
+                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
     </LinearLayout>
 
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -70,13 +117,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button1"
-                android:id="@+id/button1" android:singleLine="false"/>
+                android:id="@+id/button1" android:singleLine="false"
+                android:background="@drawable/default_button" android:layout_margin="5dp" android:textStyle="italic"
+                android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
 
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button2"
-                android:id="@+id/button2"/>
+                android:id="@+id/button2" android:background="@drawable/default_button" android:layout_margin="5dp"
+                android:textStyle="italic" android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
 
         </LinearLayout>
 
@@ -90,13 +140,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Button3"
-                android:id="@+id/button3"/>
+                android:id="@+id/button3" android:background="@drawable/default_button" android:layout_margin="5dp"
+                android:textStyle="italic" android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button4"
             android:id="@+id/button4"
-                />
+            android:background="@drawable/default_button" android:layout_margin="5dp" android:textStyle="italic"
+            android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"/>
 
         </LinearLayout>
 

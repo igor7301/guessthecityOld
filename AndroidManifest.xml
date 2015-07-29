@@ -18,8 +18,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.guesscity.guessthecity.MainActivity"/>
+        <activity android:name="com.guesscity.guessthecity.MainActivity"
+                />
         <activity android:name="com.guesscity.guessthecity.SettingsActivity"/>
+
 
     </application>
 
