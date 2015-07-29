@@ -50,9 +50,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.guesscity.guessthecity" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2a042ef-0e9e-4ca5-aa41-9710aa2325f2" name="Default" comment="первая версия игры. с картинками из 36 городов">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/start_activity.xml" afterPath="$PROJECT_DIR$/res/layout/start_activity.xml" />
+    <list default="true" id="d2a042ef-0e9e-4ca5-aa41-9710aa2325f2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="guessthecity.iws" />
@@ -75,30 +73,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.111111">
-              <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7798013">
+              <caret line="128" column="41" selection-start-line="128" selection-start-column="41" selection-end-line="128" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4423#4424#0" expanded="true" />
                 <element signature="e#4461#4462#0" expanded="true" />
                 <element signature="e#4516#4517#0" expanded="true" />
                 <element signature="e#4563#4564#0" expanded="true" />
-                <element signature="e#6138#6139#0" expanded="true" />
-                <element signature="e#6204#6205#0" expanded="true" />
-                <element signature="e#7184#7185#0" expanded="true" />
-                <element signature="e#7260#7261#0" expanded="true" />
-                <element signature="e#7854#7855#0" expanded="true" />
-                <element signature="e#7897#7898#0" expanded="true" />
-                <element signature="e#11426#11427#0" expanded="true" />
-                <element signature="e#11492#11493#0" expanded="true" />
-                <element signature="e#12414#12423#0" expanded="true" />
-                <element signature="e#12507#12516#0" expanded="true" />
-                <element signature="e#13664#13665#0" expanded="true" />
-                <element signature="e#13711#13712#0" expanded="true" />
-                <marker date="1438188562000" expanded="true" signature="12372:12567" placeholder="..." />
+                <element signature="e#6145#6146#0" expanded="true" />
+                <element signature="e#6211#6212#0" expanded="true" />
+                <element signature="e#7191#7192#0" expanded="true" />
+                <element signature="e#7267#7268#0" expanded="true" />
+                <element signature="e#7861#7862#0" expanded="true" />
+                <element signature="e#7904#7905#0" expanded="true" />
+                <element signature="e#11433#11434#0" expanded="true" />
+                <element signature="e#11499#11500#0" expanded="true" />
+                <element signature="e#12421#12430#0" expanded="true" />
+                <element signature="e#12514#12523#0" expanded="true" />
+                <element signature="e#13671#13672#0" expanded="true" />
+                <element signature="e#13718#13719#0" expanded="true" />
+                <marker date="1438191190000" expanded="true" signature="12379:12574" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -117,13 +115,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rio.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/rio.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="amsterdam.jpg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/amsterdam.jpg">
           <provider selected="true" editor-type-id="images">
@@ -138,20 +129,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_activity.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main_activity.xml">
-          <provider editor-type-id="android-designer">
+      <file leaf-file-name="settings_activity.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/settings_activity.xml">
+          <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.137931">
-              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="start_activity.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="end_game.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/end_game.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0689654">
+              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main_activity.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/main_activity.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="start_activity.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/start_activity.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
@@ -176,13 +193,6 @@
       </file>
       <file leaf-file-name="austria_hallstat.jpg" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/austria_hallstat.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seul.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/seul.jpg">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
@@ -261,10 +271,10 @@
         <option value="$PROJECT_DIR$/res/xml/country_names.xml" />
         <option value="$PROJECT_DIR$/res/xml/city_hints.xml" />
         <option value="$PROJECT_DIR$/res/xml/country_hints.xml" />
-        <option value="$PROJECT_DIR$/res/layout/settings_activity.xml" />
         <option value="$PROJECT_DIR$/res/layout/main_activity.xml" />
-        <option value="$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/settings_activity.xml" />
         <option value="$PROJECT_DIR$/res/layout/start_activity.xml" />
+        <option value="$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -797,7 +807,7 @@
       <workItem from="1437629106096" duration="44680000" />
       <workItem from="1438015045401" duration="6111000" />
       <workItem from="1438105182949" duration="436000" />
-      <workItem from="1438106146817" duration="19076000" />
+      <workItem from="1438106146817" duration="20429000" />
     </task>
     <task id="LOCAL-00001" summary="добавил обработку правильного и неправильного ответов.">
       <created>1437497753109</created>
@@ -871,11 +881,29 @@
       <option name="project" value="LOCAL" />
       <updated>1438176859698</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="рефакторинг. больше не генерируются повторяющиеся названия городов">
+      <created>1438189083565</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1438189083565</updated>
+    </task>
+    <task id="LOCAL-00014" summary="перевел все на русский. принудительно выставил белый цвет для шрифта кнопок">
+      <created>1438189612690</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1438189612690</updated>
+    </task>
+    <task id="LOCAL-00015" summary="удалил setAlpha">
+      <created>1438191206469</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1438191206469</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140769000" />
+    <option name="totallyTimeSpent" value="142122000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="731" extended-state="0" />
@@ -931,7 +959,10 @@
     <MESSAGE value="первая версия игры. с картинками из 36 городов" />
     <MESSAGE value="шрифт" />
     <MESSAGE value="удлил хлам&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="удлил хлам&#10;" />
+    <MESSAGE value="рефакторинг. больше не генерируются повторяющиеся названия городов" />
+    <MESSAGE value="перевел все на русский. принудительно выставил белый цвет для шрифта кнопок" />
+    <MESSAGE value="удалил setAlpha" />
+    <option name="LAST_COMMIT_MESSAGE" value="удалил setAlpha" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -950,13 +981,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java</url>
-          <line>314</line>
+          <line>313</line>
           <properties />
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java</url>
-          <line>377</line>
+          <line>376</line>
           <properties />
           <option name="timeStamp" value="51" />
         </line-breakpoint>
@@ -1170,17 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/end_game.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0689654">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/life_off.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1246,17 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/settings_activity.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.275862">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/custom_ratingbar.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1317,40 +1326,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.111111">
-          <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4423#4424#0" expanded="true" />
-            <element signature="e#4461#4462#0" expanded="true" />
-            <element signature="e#4516#4517#0" expanded="true" />
-            <element signature="e#4563#4564#0" expanded="true" />
-            <element signature="e#6138#6139#0" expanded="true" />
-            <element signature="e#6204#6205#0" expanded="true" />
-            <element signature="e#7184#7185#0" expanded="true" />
-            <element signature="e#7260#7261#0" expanded="true" />
-            <element signature="e#7854#7855#0" expanded="true" />
-            <element signature="e#7897#7898#0" expanded="true" />
-            <element signature="e#11426#11427#0" expanded="true" />
-            <element signature="e#11492#11493#0" expanded="true" />
-            <element signature="e#12414#12423#0" expanded="true" />
-            <element signature="e#12507#12516#0" expanded="true" />
-            <element signature="e#13664#13665#0" expanded="true" />
-            <element signature="e#13711#13712#0" expanded="true" />
-            <marker date="1438188562000" expanded="true" signature="12372:12567" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_activity.xml">
+    <entry file="file://$PROJECT_DIR$/res/layout/end_game.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.137931">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        <state vertical-scroll-proportion="-2.0689654">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -1363,6 +1345,55 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/settings_activity.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main_activity.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/guesscity/guessthecity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7798013">
+          <caret line="128" column="41" selection-start-line="128" selection-start-column="41" selection-end-line="128" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4423#4424#0" expanded="true" />
+            <element signature="e#4461#4462#0" expanded="true" />
+            <element signature="e#4516#4517#0" expanded="true" />
+            <element signature="e#4563#4564#0" expanded="true" />
+            <element signature="e#6145#6146#0" expanded="true" />
+            <element signature="e#6211#6212#0" expanded="true" />
+            <element signature="e#7191#7192#0" expanded="true" />
+            <element signature="e#7267#7268#0" expanded="true" />
+            <element signature="e#7861#7862#0" expanded="true" />
+            <element signature="e#7904#7905#0" expanded="true" />
+            <element signature="e#11433#11434#0" expanded="true" />
+            <element signature="e#11499#11500#0" expanded="true" />
+            <element signature="e#12421#12430#0" expanded="true" />
+            <element signature="e#12514#12523#0" expanded="true" />
+            <element signature="e#13671#13672#0" expanded="true" />
+            <element signature="e#13718#13719#0" expanded="true" />
+            <marker date="1438191190000" expanded="true" signature="12379:12574" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
