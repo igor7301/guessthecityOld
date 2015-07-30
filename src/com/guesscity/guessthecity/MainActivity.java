@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,7 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private HashMap pictures_name;
     private HashMap pictures_hints;
     private Integer keyOfActivePicture;
-    private List<Integer> remainderPictures = new ArrayList<Integer>();
+    private List<Integer> remainderPicturesKey;
     private final Handler handler = new Handler();
     private Integer currentLives;
     private final static Integer LIVES = 3;
@@ -78,7 +77,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mSettings = getSharedPreferences(getResources().getString(R.string.APP_PREFERENCES).toString(), Context.MODE_PRIVATE);
 
-        Boolean city = mSettings.getBoolean(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString(), true);;
+        Boolean city = mSettings.getBoolean(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString(), true);
+        ;
 
 //        if (mSettings.contains(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString()))
 
@@ -91,10 +91,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
 
-
         updateLives(LIVES);
-        init(remainderPictures);
-        keyOfActivePicture = getUniqueRandomValue(remainderPictures);
+        remainderPicturesKey = loadKey(pictures);
+        keyOfActivePicture = getUniqueRandomValue(remainderPicturesKey);
+        remainderPicturesKey = removeValue(remainderPicturesKey, keyOfActivePicture);
 
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
@@ -109,7 +109,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private Integer getAmountOfRemainderQuestions() {
-        return remainderPictures.size();
+        return remainderPicturesKey.size();
     }
 
     private void updateLives(Integer lives) {
@@ -129,14 +129,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        relativeLayoutTopBar.setAlpha((float) 0.5);
 
 
-
-
 //        textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
         textViewEndGameMessage.setTextSize(20);
         if (currentLives > 0) {
             message = "ВЫ ВЫЙГРАЛИ!";
 //            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
-
 
 
         } else {
@@ -156,7 +153,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     private void goToNextQuestion() {
-        keyOfActivePicture = getUniqueRandomValue(remainderPictures);
+        keyOfActivePicture = getUniqueRandomValue(remainderPicturesKey);
+        remainderPicturesKey = removeValue(remainderPicturesKey, keyOfActivePicture);
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
         updateProgress();
@@ -164,7 +162,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private Boolean lastQuestion() {
-        return remainderPictures.size() > 0 ? false : true;
+        return remainderPicturesKey.size() > 0 ? false : true;
     }
 
 
@@ -214,8 +212,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 processRightAnswer(getCorrectAnswerButton());
             }
         }, 1000);
-
-
 
 
     }
@@ -311,7 +307,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void processHint() {
 
-        Toast toast = Toast.makeText(this,  getHint(keyOfActivePicture), Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, getHint(keyOfActivePicture), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
 
@@ -363,13 +359,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
 
-    private void init(List<Integer> list) {
-        if (list.size() > 0) {
-            list.clear();
+    private List<Integer> loadKey(Map<String, String> map) {
+        List<Integer> keyList = new ArrayList<Integer>();
+        for (Object key : map.keySet()) {
+            keyList.add(Integer.parseInt((String) key));
         }
-        for (int i = 0; i < pictures.size(); i++) {
-            list.add(i, i + 1);
-        }
+        return keyList;
     }
 
     private <T> T getUniqueRandomValue(List<T> list) {
@@ -377,8 +372,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Integer randInt = new Random().nextInt(list.size());
 
         T retValue = list.get(randInt);
-        list.remove(list.indexOf(retValue));
+//        if (list.size() > 0) {
+//            list.remove(list.indexOf(retValue));
+//        }
         return retValue;
+    }
+
+    private <T> List<T> removeValue(List<T> list, T value) {
+        if (list.size() > 0) {
+            list.remove(list.indexOf(value));
+        }
+        return list;
     }
 
     private void loadMainPicture(Integer num) {
@@ -396,29 +400,65 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void buttonsInitialization() {
 
+        List<Integer> picturesKey = loadKey(pictures);
+        Integer key1, key2, key3, key4;
+        String value1 = null, value2 = null, value3 = null, value4 = null;
 
 
-        List<Integer> keyOfPicture = new ArrayList<Integer>();
-        init(keyOfPicture);
+        key1 = keyOfActivePicture;
+        value1 = ((String) pictures_name.get(key1.toString())).trim();
+        do {
 
-        List<Integer> keyOfPictures = new ArrayList<Integer>();
-        keyOfPictures.add(keyOfActivePicture);
-        removeValue(keyOfPicture, keyOfActivePicture);
-        keyOfPictures.add(getUniqueRandomValue(keyOfPicture));
-        keyOfPictures.add(getUniqueRandomValue(keyOfPicture));
-        keyOfPictures.add(getUniqueRandomValue(keyOfPicture));
-        Collections.shuffle(keyOfPictures);
+            if (picturesKey.size() == 0) {
+                key2 = key1;
+                break;
+            }
+            else {
+                key2 = getUniqueRandomValue(picturesKey);
+                picturesKey = removeValue(picturesKey, key2);
+                value2 = ((String) pictures_name.get(key2.toString())).trim();
+            }
+
+        } while (value1.equalsIgnoreCase(value2));
+
+        do {
+
+            if (picturesKey.size() == 0) {
+                key3 = key2;
+                break;
+            }
+            else {
+                key3 = getUniqueRandomValue(picturesKey);
+                picturesKey = removeValue(picturesKey, key3);
+                value3 = ((String) pictures_name.get(key3.toString())).trim();
+            }
+
+        } while (value3.equalsIgnoreCase(value1) || value3.equalsIgnoreCase(value2));
 
 
-        button1.setText(pictures_name.get(keyOfPictures.get(0).toString()).toString());
-        button2.setText(pictures_name.get(keyOfPictures.get(1).toString()).toString());
-        button3.setText(pictures_name.get(keyOfPictures.get(2).toString()).toString());
-        button4.setText(pictures_name.get(keyOfPictures.get(3).toString()).toString());
+        do {
 
-        button1.setTag(keyOfPictures.get(0));
-        button2.setTag(keyOfPictures.get(1));
-        button3.setTag(keyOfPictures.get(2));
-        button4.setTag(keyOfPictures.get(3));
+            if (picturesKey.size() == 0) {
+                key4 = key3;
+                break;
+            }
+            else {
+                key4 = getUniqueRandomValue(picturesKey);
+                picturesKey = removeValue(picturesKey, key4);
+                value4 = ((String) pictures_name.get(key4.toString())).trim();
+            }
+
+        } while (value4.equalsIgnoreCase(value1) || value4.equalsIgnoreCase(value2) || value4.equalsIgnoreCase(value3));
+
+        button1.setText(pictures_name.get(key1.toString()).toString());
+        button2.setText(pictures_name.get(key2.toString()).toString());
+        button3.setText(pictures_name.get(key3.toString()).toString());
+        button4.setText(pictures_name.get(key4.toString()).toString());
+
+        button1.setTag(key1);
+        button2.setTag(key2);
+        button3.setTag(key3);
+        button4.setTag(key4);
 
         initDefaultButton(button1);
         initDefaultButton(button2);
@@ -430,9 +470,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-    private <T> void removeValue(List<T> list, T value) {
-       list.remove(list.indexOf(value));
-    }
 
     private void initDefaultButton(Button button) {
         button.setClickable(true);
