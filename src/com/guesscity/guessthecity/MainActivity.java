@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
 
+import java.sql.Array;
 import java.util.*;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -450,15 +451,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         } while (value4.equalsIgnoreCase(value1) || value4.equalsIgnoreCase(value2) || value4.equalsIgnoreCase(value3));
 
-        button1.setText(pictures_name.get(key1.toString()).toString());
-        button2.setText(pictures_name.get(key2.toString()).toString());
-        button3.setText(pictures_name.get(key3.toString()).toString());
-        button4.setText(pictures_name.get(key4.toString()).toString());
 
-        button1.setTag(key1);
-        button2.setTag(key2);
-        button3.setTag(key3);
-        button4.setTag(key4);
+        List<Integer> shuffleKeys = Arrays.asList(key1, key2, key3, key4);
+        Collections.shuffle(shuffleKeys);
+
+        button1.setText(pictures_name.get(shuffleKeys.get(0).toString()).toString());
+        button2.setText(pictures_name.get(shuffleKeys.get(1).toString()).toString());
+        button3.setText(pictures_name.get(shuffleKeys.get(2).toString()).toString());
+        button4.setText(pictures_name.get(shuffleKeys.get(3).toString()).toString());
+
+        button1.setTag(shuffleKeys.get(0));
+        button2.setTag(shuffleKeys.get(1));
+        button3.setTag(shuffleKeys.get(2));
+        button4.setTag(shuffleKeys.get(3));
 
         initDefaultButton(button1);
         initDefaultButton(button2);
