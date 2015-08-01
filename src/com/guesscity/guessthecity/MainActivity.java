@@ -14,7 +14,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -40,6 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Bundle savedInstanceState;
     private final static String TEMPLATE = "_level";
     private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2);
+    private TextView textViewLevelInfo;
 
 
     /**
@@ -64,6 +64,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textViewProgress = (TextView) findViewById(R.id.textViewProgress);
         imageViewHint = (ImageView) findViewById(R.id.imageViewHint);
         imageViewMainPicture = (ImageView) findViewById(R.id.imageViewMainPicture);
+        textViewLevelInfo = (TextView) findViewById(R.id.textViewLevelInfo);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -123,6 +124,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void updateProgress() {
         textViewProgress.setText(getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
+        textViewLevelInfo.setText("Уровень: " + getCurrentLevel());
     }
 
     private void processEndGame() {

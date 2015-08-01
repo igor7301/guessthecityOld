@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -14,6 +15,7 @@ import android.widget.TextView;
  */
 public class LevelUpActivity extends Activity implements View.OnClickListener {
     private TextView textViewInfo;
+    private ImageView imageViewLevelUp;
     private Button buttonContinue;
     private SharedPreferences mSettings;
     private SharedPreferences.Editor editor;
@@ -25,6 +27,8 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
 
         textViewInfo = (TextView) findViewById(R.id.textViewLevelUpInfo);
         buttonContinue = (Button) findViewById(R.id.buttonContinue);
+        imageViewLevelUp = (ImageView) findViewById(R.id.imageViewLelevUp);
+
 
         mSettings = getSharedPreferences(getResources()
                 .getString(R.string.APP_PREFERENCES).toString(), Context.MODE_PRIVATE);
@@ -33,6 +37,12 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
         textViewInfo.setOnClickListener(this);
 
         textViewInfo.setText("Вы перешли на новый уровень: " + mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0));
+        int res = getResources()
+
+                .getIdentifier("level_up" + mSettings.getInt(getResources()
+                .getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0), "drawable", "com.guesscity.guessthecity");
+
+        imageViewLevelUp.setImageResource(res);
 
         buttonContinue.setOnClickListener(this);
     }
