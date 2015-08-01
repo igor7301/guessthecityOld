@@ -2,6 +2,7 @@ package com.guesscity.guessthecity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,16 +14,15 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
 
-import java.sql.Array;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private ImageView imageViewHint;
     private ImageView imageViewMainPicture;
     private SharedPreferences mSettings;
+    private SharedPreferences.Editor editor;
     private TextView textViewProgress;
-    private RelativeLayout relativeLayout;
-    private RelativeLayout relativeLayoutTopBar;
     private LinearLayout linearLayoutEndGame;
     private LinearLayout linearLayoutAnswerButtons;
     private TextView textViewEndGameMessage;
@@ -38,6 +38,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Integer currentLives;
     private final static Integer LIVES = 3;
     private Bundle savedInstanceState;
+    private final static String TEMPLATE = "_level";
+    private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2);
 
 
     /**
@@ -50,8 +52,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.main_activity);
 
         livesWidget = (RatingBar) findViewById(R.id.ratingBar);
-        relativeLayout = (RelativeLayout) findViewById(R.id.mainLayout);
-        relativeLayoutTopBar = (RelativeLayout) findViewById(R.id.relativeLayoutTopBar);
         linearLayoutAnswerButtons = (LinearLayout) findViewById(R.id.linearLayoutAnswerButtons);
         linearLayoutEndGame = (LinearLayout) findViewById(R.id.linearLayoutEndGame);
         button1 = (Button) findViewById(R.id.button1);
@@ -73,15 +73,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnQuitGame.setOnClickListener(this);
         imageViewHint.setOnClickListener(this);
 
-
-        pictures = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.pictures);
-
         mSettings = getSharedPreferences(getResources().getString(R.string.APP_PREFERENCES).toString(), Context.MODE_PRIVATE);
-
+        editor = mSettings.edit();
         Boolean city = mSettings.getBoolean(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString(), true);
-        ;
+        Integer level = mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
 
-//        if (mSettings.contains(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString()))
+
+        if (level == 0) {
+            throw new RuntimeException("You level couldn't be equals 0");
+        }
+
+        pictures = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.pictures, TEMPLATE + level);
 
         if (city) {
             pictures_name = (HashMap<String, String>) ResourceUtils.getHashMapResource(this, R.xml.city_names);
@@ -94,8 +96,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         updateLives(LIVES);
         remainderPicturesKey = loadKey(pictures);
-        keyOfActivePicture = getUniqueRandomValue(remainderPicturesKey);
-        remainderPicturesKey = removeValue(remainderPicturesKey, keyOfActivePicture);
+        keyOfActivePicture = getRandomValue(remainderPicturesKey);
+        remainderPicturesKey.remove(remainderPicturesKey.indexOf(keyOfActivePicture));
 
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
@@ -145,6 +147,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textViewEndGameMessage.setGravity(Gravity.CENTER);
         textViewEndGameMessage.setText(message);
         linearLayoutEndGame.setVisibility(View.VISIBLE);
+        editor.putInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
+        editor.apply();
 
     }
 
@@ -154,8 +158,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     private void goToNextQuestion() {
-        keyOfActivePicture = getUniqueRandomValue(remainderPicturesKey);
-        remainderPicturesKey = removeValue(remainderPicturesKey, keyOfActivePicture);
+        keyOfActivePicture = getRandomValue(remainderPicturesKey);
+        remainderPicturesKey.remove(remainderPicturesKey.indexOf(keyOfActivePicture));
         loadMainPicture(keyOfActivePicture);
         buttonsInitialization();
         updateProgress();
@@ -177,6 +181,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private Integer getCurrentLevel() {
+        return mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0);
+    }
+
+    private void setCurrentLevel(Integer level) {
+        editor.putInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), level);
+        editor.apply();
+    }
+
+
     private void processRightAnswer(Button button) {
 
         setAllButtonsClickable(false);
@@ -186,13 +200,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             public void run() {
                 if (!lastQuestion() && currentLives != 0) {
-
-
                     goToNextQuestion();
 
                 } else {
 
-                    processEndGame();
+                    goToNextLevel();
                 }
             }
         }, 1000);
@@ -200,6 +212,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private void goToNextLevel() {
+        if (lastLevel()) {
+            processEndGame();
+        } else {
+            finish();
+            setCurrentLevel(getCurrentLevel() + 1);
+            Intent intent = new Intent(this, LevelUpActivity.class);
+            startActivity(intent);
+
+        }
+    }
+
+    private boolean lastLevel() {
+
+        int level = mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0);
+        if (level == Collections.max(AVAILABLE_LEVELS)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        setCurrentLevel(1);
+    }
 
     private void processWrongAnswer(Button button) {
 
@@ -294,6 +333,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 onCreate(savedInstanceState);
                 break;
             case R.id.buttonQuitGame:
+                editor.putInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
+                editor.apply();
                 onBackPressed();
                 break;
             case R.id.imageViewHint:
@@ -305,6 +346,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         }
     }
+
 
     private void processHint() {
 
@@ -368,23 +410,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return keyList;
     }
 
-    private <T> T getUniqueRandomValue(List<T> list) {
+    private <T> T getRandomValue(List<T> list) {
 
         Integer randInt = new Random().nextInt(list.size());
 
         T retValue = list.get(randInt);
-//        if (list.size() > 0) {
-//            list.remove(list.indexOf(retValue));
-//        }
+
         return retValue;
     }
 
-    private <T> List<T> removeValue(List<T> list, T value) {
-        if (list.size() > 0) {
-            list.remove(list.indexOf(value));
-        }
-        return list;
-    }
 
     private void loadMainPicture(Integer num) {
         int res = getResources()
@@ -413,10 +447,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (picturesKey.size() == 0) {
                 key2 = key1;
                 break;
-            }
-            else {
-                key2 = getUniqueRandomValue(picturesKey);
-                picturesKey = removeValue(picturesKey, key2);
+            } else {
+                key2 = getRandomValue(picturesKey);
+                picturesKey.remove(picturesKey.indexOf(key2));
                 value2 = ((String) pictures_name.get(key2.toString())).trim();
             }
 
@@ -427,10 +460,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (picturesKey.size() == 0) {
                 key3 = key2;
                 break;
-            }
-            else {
-                key3 = getUniqueRandomValue(picturesKey);
-                picturesKey = removeValue(picturesKey, key3);
+            } else {
+                key3 = getRandomValue(picturesKey);
+                picturesKey.remove(picturesKey.indexOf(key3));
                 value3 = ((String) pictures_name.get(key3.toString())).trim();
             }
 
@@ -442,10 +474,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (picturesKey.size() == 0) {
                 key4 = key3;
                 break;
-            }
-            else {
-                key4 = getUniqueRandomValue(picturesKey);
-                picturesKey = removeValue(picturesKey, key4);
+            } else {
+                key4 = getRandomValue(picturesKey);
+                picturesKey.remove(picturesKey.indexOf(key4));
                 value4 = ((String) pictures_name.get(key4.toString())).trim();
             }
 

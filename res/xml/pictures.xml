@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <map name="pictures_file_names">
-        <entry key="1">amsterdam</entry>
+        <entry key="1">amsterdam_level1</entry>
         <entry key="2">austria_hallstat</entry>
         <entry key="3">barcelona</entry>
         <entry key="4">canada_vancouver</entry>
@@ -36,8 +36,8 @@
         <entry key="34">singapour</entry>
         <entry key="35">tailand2</entry>
         <entry key="36">talling</entry>
-        <entry key="37">allesund_norway</entry>
-        <entry key="38">antverpen_belgiya</entry>
+        <entry key="37">allesund_norway_level1</entry>
+        <entry key="38">antverpen_belgiya_level2</entry>
         <entry key="39">astana</entry>
         <entry key="40">baky_azerbadzan</entry>
         <entry key="41">chili_santyago</entry>

@@ -14,11 +14,16 @@ import java.util.Map;
  */
 public class ResourceUtils {
     public static Map<String, String> getHashMapResource(Context c, int hashMapResId) {
+        return getHashMapResource(c, hashMapResId, null);
+    }
+
+    public static Map<String, String> getHashMapResource(Context c, int hashMapResId, String level) {
         Map<String, String> map = null;
         XmlResourceParser parser = c.getResources().getXml(hashMapResId);
 
         String key = null;
         String value = null;
+
 
         try {
             int eventType = parser.getEventType();
@@ -41,15 +46,27 @@ public class ResourceUtils {
                     }
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (parser.getName().equals("entry")) {
-                        map.put(key, value);
+
+                        if (level != null) {
+
+                            if (value.contains(level)) {
+                                map.put(key, value);
+                            }
+                            else {
+//                                throw new RuntimeException("Please check you level names." +
+//                                        " The level with " + level + " name wasn't found");
+                            }
+                        } else {
+                            map.put(key, value);
+                        }
+
                         key = null;
                         value = null;
                     }
-                }
-                else if (eventType == XmlPullParser.TEXT) {
+                } else if (eventType == XmlPullParser.TEXT) {
                     if (null != key) {
                         parser.getText();
-                       // getResources().
+                        // getResources().
 
                         value = parser.getText();
                     }

@@ -23,6 +23,8 @@
                   android:screenOrientation="portrait"/>
         <activity android:name="com.guesscity.guessthecity.SettingsActivity"
                   android:screenOrientation="portrait"/>
+        <activity android:name="com.guesscity.guessthecity.LevelUpActivity"
+                  android:screenOrientation="portrait"/>
 
 
     </application>
