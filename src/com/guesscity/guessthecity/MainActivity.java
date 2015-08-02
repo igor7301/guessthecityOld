@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private final static Integer LIVES = 3;
     private Bundle savedInstanceState;
     private final static String TEMPLATE = "_level";
-    private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2);
+    private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2, 3, 4);
     private TextView textViewLevelInfo;
 
 
@@ -78,6 +78,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         editor = mSettings.edit();
         Boolean city = mSettings.getBoolean(getResources().getString(R.string.APP_PREFERENCES_CITY_GAME).toString(), true);
         Integer level = mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
+        setCurrentLevel(level);
 
 
         if (level == 0) {
@@ -201,10 +202,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
+
                 if (!lastQuestion() && currentLives != 0) {
                     goToNextQuestion();
 
-                } else {
+                }
+                else  {
 
                     goToNextLevel();
                 }
@@ -215,7 +219,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void goToNextLevel() {
-        if (lastLevel()) {
+        if (lastLevel() || currentLives == 0) {
             processEndGame();
         } else {
             finish();

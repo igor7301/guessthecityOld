@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent" android:gravity="center"
-        android:background="@drawable/mainfon"
+        android:background="@drawable/fon1"
         >
 
 
@@ -20,11 +20,13 @@
                 android:text="ГОРОДА"
                 android:id="@+id/radioBtnCity"
 
-                android:checked="false" android:textColor="#ffffffff"/>
+                android:checked="false" android:textColor="#ffffffff" android:background="@drawable/default_button"
+                android:layout_gravity="center" android:gravity="center"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="СТРАНЫ"
-                android:id="@+id/radioBtnCountry" android:checked="false" android:textColor="#ffffffff"/>
+                android:id="@+id/radioBtnCountry" android:checked="false" android:textColor="#ffffffff"
+                android:background="@drawable/default_button" android:layout_gravity="center" android:gravity="center"/>
     </RadioGroup>
 </LinearLayout>

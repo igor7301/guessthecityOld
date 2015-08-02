@@ -40,11 +40,11 @@
                            android:maxWidth="20dp"
                            android:id="@+id/imageViewHint"
                            android:src="@drawable/hint"
-                           android:layout_marginLeft="20dp"
-                           android:layout_marginStart="20dp"
                            android:layout_centerVertical="true"
-                           android:layout_toRightOf="@+id/ratingBar"
-                           android:layout_toEndOf="@+id/ratingBar"/>
+                           android:layout_toLeftOf="@+id/textViewLevelInfo"
+                           android:layout_toStartOf="@+id/textViewLevelInfo"
+                           android:layout_marginRight="5dp"
+                           android:layout_marginEnd="5dp"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
