@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private final static Integer LIVES = 3;
     private Bundle savedInstanceState;
     private final static String TEMPLATE = "_level";
-    private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2, 3, 4);
+    private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2, 3, 4, 5);
     private TextView textViewLevelInfo;
 
 
@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void updateProgress() {
         textViewProgress.setText(getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
-        textViewLevelInfo.setText("Уровень: " + getCurrentLevel());
+        textViewLevelInfo.setText("Уровень: " + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
     }
 
     private void processEndGame() {
