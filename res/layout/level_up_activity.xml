@@ -21,7 +21,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Далее"
+            android:text="@string/continue_to_next_level"
             android:id="@+id/buttonContinue" android:layout_gravity="center_horizontal"
             android:background="@drawable/buttons_background"/>
 </LinearLayout>

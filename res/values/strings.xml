@@ -5,4 +5,16 @@
     <string name="APP_PREFERENCES_CITY_GAME">city_game</string>
     <string name="APP_PREFERENCES_CURRENT_LEVEL">current_level</string>
 
+    <string name="start_game">СТАРТ</string>
+    <string name="setting">НАСТРОЙКИ</string>
+    <string name="CITY_PREFERENCE">ГОРОДА</string>
+    <string name="COUNTRY_PREFERENCE">СТРАНЫ</string>
+    <string name="restart_game">ЗАНОВО</string>
+    <string name="quit_game">ВЫЙТИ</string>
+    <string name="current_level">Уровень: </string>
+    <string name="continue_to_next_level">ДАЛЕЕ</string>
+    <string name="you_won_message">ВЫ ВЫЙГРАЛИ!</string>
+    <string name="you_loose_message">ВЫ ПРОИГРАЛИ.\nПОПРОБУЙТЕ ЕЩЕ РАЗ</string>
+    <string name="new_level_message">"НОВЫЙ УРОВЕНЬ: "</string>
+
 </resources>

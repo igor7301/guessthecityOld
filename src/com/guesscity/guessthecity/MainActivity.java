@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void updateProgress() {
         textViewProgress.setText(getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
-        textViewLevelInfo.setText("Уровень: " + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
+        textViewLevelInfo.setText(R.string.current_level + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
     }
 
 
@@ -139,12 +139,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
         textViewEndGameMessage.setTextSize(20);
         if (currentLives > 0) {
-            message = "ВЫ ВЫЙГРАЛИ!";
+            message = getString(R.string.you_won_message);
 //            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
 
 
         } else {
-            message = "ВЫ ПРОИГРАЛИ.\nПОПРОБУЙТЕ ЕЩЕ РАЗ";
+            message = getString(R.string.you_loose_message);
 //            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.unsuccessEndGame));
 
         }

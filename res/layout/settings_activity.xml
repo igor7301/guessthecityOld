@@ -17,7 +17,7 @@
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ГОРОДА"
+                android:text="@string/CITY_PREFERENCE"
                 android:id="@+id/radioBtnCity"
 
                 android:checked="false" android:textColor="#ffffffff" android:background="@drawable/default_button"
@@ -26,7 +26,7 @@
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="СТРАНЫ"
+                android:text="@string/COUNTRY_PREFERENCE"
                 android:id="@+id/radioBtnCountry" android:checked="false" android:textColor="#ffffffff"
                 android:background="@drawable/default_button" android:layout_gravity="center" android:gravity="center"
                 android:layout_marginBottom="20dp" android:minWidth="150dp"/>

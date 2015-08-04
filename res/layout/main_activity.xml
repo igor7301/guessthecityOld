@@ -57,7 +57,7 @@
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="Уровень:"
+                  android:text="@string/current_level"
                   android:layout_alignTop="@+id/ratingBar"
                   android:layout_alignParentRight="true"
                   android:layout_alignParentEnd="true"
@@ -76,7 +76,7 @@
 
         <TextView android:layout_width="fill_parent" android:layout_height="fill_parent"
                   android:id="@+id/textViewEndGameMessage"
-                  android:text="END GAME"
+                  android:text="@string/you_won_message"
                   android:textStyle="bold"
                   android:textSize="25dp"
                   android:gravity="center"
@@ -84,7 +84,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ЗАНОВО"
+                android:text="@string/restart_game"
                 android:id="@+id/buttonRestartGame"
                 android:background="@drawable/buttons_background" android:layout_margin="7dp" android:textStyle="italic"
                 android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
@@ -92,7 +92,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВЫЙТИ"
+                android:text="@string/quit_game"
                 android:id="@+id/buttonQuitGame"
                 android:background="@drawable/buttons_background" android:layout_margin="7dp" android:textStyle="italic"
                 android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
