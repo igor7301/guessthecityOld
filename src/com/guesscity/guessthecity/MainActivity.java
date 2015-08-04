@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void updateProgress() {
         textViewProgress.setText(getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
-        textViewLevelInfo.setText(R.string.current_level + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
+        textViewLevelInfo.setText(getString(R.string.current_level) + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
     }
 
 

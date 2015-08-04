@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <map name="county">
     <entry key = "1"> Netherlands </entry>
-        <entry key = "2"> United Arab Emirates </entry>
+        <entry key = "2"> UAE </entry>
         <entry key = "3"> China </entry>
         <entry key = "4"> Greece </entry>
         <entry key = "5"> Israel </entry>
@@ -10,7 +10,7 @@
         <entry key = "8"> Cuba </entry>
         <entry key = "9"> United Kingdom </entry>
         <entry key = "10"> Russia </entry>
-        <entry key = "11"> US </entry>
+        <entry key = "11"> USA </entry>
         <entry key = "12"> France </entry>
         <entry key = "13"> Russia </entry>
         <entry key = "14"> Italy </entry>
@@ -18,18 +18,18 @@
 
         <entry key = "16"> Kazakhstan </entry>
         <entry key = "17"> Spain </entry>
-        <entry key = "18"> United Arab Emirates </entry>
+        <entry key = "18"> UAE </entry>
         <entry key = "19"> Germany </entry>
         <entry key = "20"> Italy </entry>
         <entry key = "21"> Russia </entry>
         <entry key = "22"> Malaysia </entry>
-        <entry key = "23"> US </entry>
-        <entry key = "24"> US </entry>
+        <entry key = "23"> USA </entry>
+        <entry key = "24"> USA </entry>
         <entry key = "25"> Singapore </entry>
         <entry key = "26"> Russia </entry>
         <entry key = "27"> Norway </entry>
         <entry key = "28"> Czech Republic </entry>
-        <entry key = "29"> US </entry>
+        <entry key = "29"> USA </entry>
         <entry key = "30"> Thailand </entry>
 
         <entry key = "31"> Austria </entry>
@@ -39,11 +39,11 @@
         <entry key = "35"> Germany </entry>
         <entry key = "36"> China </entry>
         <entry key = "37"> Portugal </entry>
-        <entry key = "38"> US </entry>
+        <entry key = "38"> USA </entry>
         <entry key = "39"> Monaco </entry>
-        <entry key = "40"> US </entry>
+        <entry key = "40"> USA </entry>
         <entry key = "41"> Italy </entry>
-        <entry key = "42"> US </entry>
+        <entry key = "42"> USA </entry>
         <entry key = "43"> Singapore </entry>
         <entry key = "44"> Turkey </entry>
         <entry key = "45"> Estonia </entry>
