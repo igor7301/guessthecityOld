@@ -128,12 +128,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textViewLevelInfo.setText("Уровень: " + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        btnQuitGame.setBackgroundResource(R.drawable.default_button);
-        btnRestartGame.setBackgroundResource(R.drawable.default_button);
-    }
 
     private void processEndGame() {
 
@@ -343,11 +337,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 processTheAnswer(button4);
                 break;
             case R.id.buttonRestartGame:
-                btnRestartGame.setBackgroundResource(R.drawable.correct_answer_button);
                 onCreate(savedInstanceState);
                 break;
             case R.id.buttonQuitGame:
-                btnQuitGame.setBackgroundResource(R.drawable.correct_answer_button);
                 onBackPressed();
                 break;
             case R.id.imageViewHint:

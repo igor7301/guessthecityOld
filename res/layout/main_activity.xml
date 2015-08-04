@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="ЗАНОВО"
                 android:id="@+id/buttonRestartGame"
-                android:background="@drawable/default_button" android:layout_margin="7dp" android:textStyle="italic"
+                android:background="@drawable/buttons_background" android:layout_margin="7dp" android:textStyle="italic"
                 android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
                 android:textColor="#ffffffff"/>
         <Button
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="ВЫЙТИ"
                 android:id="@+id/buttonQuitGame"
-                android:background="@drawable/default_button" android:layout_margin="7dp" android:textStyle="italic"
+                android:background="@drawable/buttons_background" android:layout_margin="7dp" android:textStyle="italic"
                 android:paddingLeft="8dp" android:paddingRight="8dp" android:maxLines="1"
                 android:textColor="#ffffffff"/>
     </LinearLayout>
