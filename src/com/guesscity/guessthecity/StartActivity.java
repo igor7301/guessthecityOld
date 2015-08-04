@@ -32,13 +32,22 @@ public class StartActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        btnStartGame.setBackgroundResource(R.drawable.default_button);
+        btnSettings.setBackgroundResource(R.drawable.default_button);
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonStartGame:
+                btnStartGame.setBackgroundResource(R.drawable.correct_answer_button);
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.buttonSettings:
+                btnSettings.setBackgroundResource(R.drawable.correct_answer_button);
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }

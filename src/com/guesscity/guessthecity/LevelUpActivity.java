@@ -48,9 +48,16 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        buttonContinue.setBackgroundResource(R.drawable.default_button);
+    }
+
+    @Override
     public void onClick(View view) {
       switch (view.getId()) {
           case R.id.buttonContinue:
+              buttonContinue.setBackgroundResource(R.drawable.correct_answer_button);
               finish();
               Intent intent = new Intent(this, MainActivity.class);
               startActivity(intent);
