@@ -37,12 +37,12 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
         textViewInfo.setOnClickListener(this);
 
         textViewInfo.setText("Вы перешли на новый уровень: " + mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0));
-        int res = getResources()
-
-                .getIdentifier("level_up" + mSettings.getInt(getResources()
-                .getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0), "drawable", "com.guesscity.guessthecity");
-
-        imageViewLevelUp.setImageResource(res);
+//        int res = getResources()
+//
+//                .getIdentifier("level_up" + mSettings.getInt(getResources()
+//                .getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0), "drawable", "com.guesscity.guessthecity");
+//
+//        imageViewLevelUp.setImageResource(res);
 
         buttonContinue.setOnClickListener(this);
     }
