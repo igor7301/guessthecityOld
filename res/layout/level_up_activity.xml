@@ -5,14 +5,14 @@
               android:layout_height="match_parent"
               android:gravity="center"
               android:id="@+id/levelUpLayout"
-              tools:context=".LevelUpActivity">
+              tools:context=".LevelUpActivity" android:background="@drawable/level_up">
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Новый уровень"
             android:id="@+id/textViewLevelUpInfo" android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp" android:textSize="25dp" android:gravity="center"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
