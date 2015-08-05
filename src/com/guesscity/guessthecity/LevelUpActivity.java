@@ -36,7 +36,7 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
 
         textViewInfo.setOnClickListener(this);
 
-        textViewInfo.setText(getString(R.string.new_level_message) + mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0));
+        textViewInfo.setText(getString(R.string.new_level_message) +  " " + mSettings.getInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 0));
 //        int res = getResources()
 //
 //                .getIdentifier("level_up" + mSettings.getInt(getResources()
