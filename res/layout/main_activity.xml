@@ -80,13 +80,14 @@
                   android:textStyle="bold"
                   android:textSize="25dp"
                   android:gravity="center"
-                  android:layout_margin="7dp" android:textColor="#ffffffff"/>
+                  android:layout_margin="7dp" android:textColor="#ffffffff" style="@style/InfoTextForEndGame"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/end_game_progress_message"
                 android:id="@+id/textViewEndGameProgressMessage" android:layout_gravity="center_horizontal"
-                android:textColor="#ffffffff" android:textSize="20dp" android:textIsSelectable="false"/>
+                android:textColor="#ffffffff" android:textSize="20dp" android:textIsSelectable="false"
+                style="@style/InfoTextForEndGame"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -169,7 +169,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textViewEndGameMessage.setGravity(Gravity.CENTER);
         textViewEndGameMessage.setText(message);
         textViewEndGameMessageProgress.setText(getString(R.string.end_game_progress_message) +
-                getNumberOfActiveQuestionInGame() + "/" + getAmountOfAllQuestionInGame());
+                " " + getNumberOfActiveQuestionInGame() + "/" + getAmountOfAllQuestionInGame());
         linearLayoutEndGame.setVisibility(View.VISIBLE);
         editor.putInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
         editor.apply();
