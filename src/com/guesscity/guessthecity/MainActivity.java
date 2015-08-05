@@ -25,6 +25,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private LinearLayout linearLayoutEndGame;
     private LinearLayout linearLayoutAnswerButtons;
     private TextView textViewEndGameMessage;
+    private TextView textViewEndGameMessageProgress;
     private RatingBar livesWidget;
     private Button btnRestartGame, btnQuitGame;
     private Button button1, button2, button3, button4;
@@ -61,6 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnRestartGame = (Button) findViewById(R.id.buttonRestartGame);
         btnQuitGame = (Button) findViewById(R.id.buttonQuitGame);
         textViewEndGameMessage = (TextView) findViewById(R.id.textViewEndGameMessage);
+        textViewEndGameMessageProgress = (TextView) findViewById(R.id.textViewEndGameProgressMessage);
         textViewProgress = (TextView) findViewById(R.id.textViewProgress);
         imageViewHint = (ImageView) findViewById(R.id.imageViewHint);
         imageViewMainPicture = (ImageView) findViewById(R.id.imageViewMainPicture);
@@ -135,21 +137,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         linearLayoutAnswerButtons.setVisibility(View.INVISIBLE);
 //        relativeLayoutTopBar.setAlpha((float) 0.5);
 
-
 //        textViewEndGameMessage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/LeagueGothicRegular.otf"));
-        textViewEndGameMessage.setTextSize(20);
+
         if (currentLives > 0) {
             message = getString(R.string.you_won_message);
-//            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.successEndGame));
-
 
         } else {
             message = getString(R.string.you_loose_message);
-//            textViewEndGameMessage.setTextColor(getResources().getColor(R.color.unsuccessEndGame));
-
         }
         textViewEndGameMessage.setGravity(Gravity.CENTER);
         textViewEndGameMessage.setText(message);
+        textViewEndGameMessageProgress.setText(getString(R.string.end_game_progress_message) +
+                getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
         linearLayoutEndGame.setVisibility(View.VISIBLE);
         editor.putInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
         editor.apply();

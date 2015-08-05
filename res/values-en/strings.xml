@@ -11,4 +11,5 @@
     <string name="you_won_message">YOU WON!</string>
     <string name="you_loose_message">YOU LOOSE.\nTRY AGAIN</string>
     <string name="new_level_message">NEW LEVEL: </string>
+    <string name="end_game_progress_message">PROGRESS: </string>
 </resources>
