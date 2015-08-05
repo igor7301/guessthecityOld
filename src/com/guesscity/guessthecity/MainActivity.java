@@ -111,11 +111,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-    private Integer getAmountOfAllQuestions() {
+    private Integer getAmountOfAllQuestionsOnLevel() {
         return pictures.size();
     }
 
-    private Integer getAmountOfRemainderQuestions() {
+    private Integer getAmountOfRemainderQuestionsOnLevel() {
         return remainderPicturesKey.size();
     }
 
@@ -126,8 +126,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateProgress() {
-        textViewProgress.setText(getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
+        textViewProgress.setText(getNumberOfActiveQuestionOnLevel() + "/" + getAmountOfAllQuestionsOnLevel());
         textViewLevelInfo.setText(getString(R.string.current_level) + getCurrentLevel() + "/" + Collections.max(AVAILABLE_LEVELS));
+    }
+
+    private Integer getAmountOfAllQuestionInGame() {
+        return  ((HashMap < String, String >) ResourceUtils.getHashMapResource(this, R.xml.pictures, TEMPLATE)).size();
+    }
+
+    private Integer getNumberOfActiveQuestionInGame() {
+
+        int numberOfActiveQuestionInGame = 0;
+
+        for(int i = Collections.min(AVAILABLE_LEVELS); i <= (getCurrentLevel() - 1); i++ ) {
+            numberOfActiveQuestionInGame +=
+                    ((HashMap < String, String >) ResourceUtils.getHashMapResource(this, R.xml.pictures, TEMPLATE + i))
+                            .size();
+
+
+        }
+        numberOfActiveQuestionInGame += getNumberOfActiveQuestionOnLevel();
+        return numberOfActiveQuestionInGame;
+
+
     }
 
 
@@ -148,15 +169,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         textViewEndGameMessage.setGravity(Gravity.CENTER);
         textViewEndGameMessage.setText(message);
         textViewEndGameMessageProgress.setText(getString(R.string.end_game_progress_message) +
-                getNumberOfActiveQuestion() + "/" + getAmountOfAllQuestions());
+                getNumberOfActiveQuestionInGame() + "/" + getAmountOfAllQuestionInGame());
         linearLayoutEndGame.setVisibility(View.VISIBLE);
         editor.putInt(getResources().getString(R.string.APP_PREFERENCES_CURRENT_LEVEL), 1);
         editor.apply();
 
     }
 
-    private Integer getNumberOfActiveQuestion() {
-        return (getAmountOfAllQuestions() - getAmountOfRemainderQuestions());
+    private Integer getNumberOfActiveQuestionOnLevel() {
+        return (getAmountOfAllQuestionsOnLevel() - getAmountOfRemainderQuestionsOnLevel());
     }
 
 
