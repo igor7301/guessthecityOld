@@ -16,6 +16,6 @@
     <string name="you_won_message">ВЫ ВЫЙГРАЛИ!</string>
     <string name="you_loose_message">ВЫ ПРОИГРАЛИ.\nПОПРОБУЙТЕ ЕЩЕ РАЗ</string>
     <string name="end_game_progress_message">ПРОГРЕСС: </string>
-    <string name="new_level_message">"НОВЫЙ УРОВЕНЬ: "</string>
+    <string name="new_level_message">"НОВОЕ ДОСТИЖЕНИЕ\nУРОВЕНЬ  "</string>
 
 </resources>

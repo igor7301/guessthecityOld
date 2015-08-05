@@ -9,7 +9,7 @@
     <string name="current_level">Level: </string>
     <string name="continue_to_next_level">CONTINUE</string>
     <string name="you_won_message">YOU WON!</string>
-    <string name="you_loose_message">YOU LOOSE.\nTRY AGAIN</string>
-    <string name="new_level_message">NEW LEVEL: </string>
+    <string name="you_loose_message">YOU LOSE.\nTRY AGAIN</string>
+    <string name="new_level_message">NEW ACHIEVEMENT\nLEVEL  </string>
     <string name="end_game_progress_message">PROGRESS: </string>
 </resources>
