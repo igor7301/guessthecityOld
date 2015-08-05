@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_game">START</string>
-    <string name="setting">SETTING</string>
+    <string name="setting">SETTINGS</string>
     <string name="CITY_PREFERENCE">CITIES</string>
     <string name="COUNTRY_PREFERENCE">COUNTRIES</string>
     <string name="restart_game">RESTART</string>
