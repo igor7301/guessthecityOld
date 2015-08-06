@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.startapp.android.publish.StartAppAd;
 
 /**
  * Created by Igor on 01.08.15.
  */
 public class LevelUpActivity extends Activity implements View.OnClickListener {
+    private StartAppAd startAppAd = new StartAppAd(this);
     private TextView textViewInfo;
     private ImageView imageViewLevelUp;
     private Button buttonContinue;
@@ -27,7 +29,6 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
 
         textViewInfo = (TextView) findViewById(R.id.textViewLevelUpInfo);
         buttonContinue = (Button) findViewById(R.id.buttonContinue);
-        imageViewLevelUp = (ImageView) findViewById(R.id.imageViewLelevUp);
 
 
         mSettings = getSharedPreferences(getResources()
@@ -47,6 +48,11 @@ public class LevelUpActivity extends Activity implements View.OnClickListener {
         buttonContinue.setOnClickListener(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        startAppAd.onResume();
+    }
 
     @Override
     public void onClick(View view) {
