@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.startapp.android.publish.StartAppAd;
+import com.startapp.android.publish.StartAppSDK;
+
 
 /**
  * Created by Igor on 23.07.15.
@@ -15,10 +18,16 @@ public class StartActivity extends Activity implements View.OnClickListener {
     Button btnStartGame, btnSettings;
     private SharedPreferences mSettings;
     private SharedPreferences.Editor editor;
+    private StartAppAd startAppAd = new StartAppAd(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        StartAppSDK.init(this, "106159305", "207342564", true);
+        StartAppAd.showSplash(this, savedInstanceState);
+
+
         setContentView(R.layout.start_activity);
         btnStartGame = (Button) findViewById(R.id.buttonStartGame);
         btnSettings = (Button) findViewById(R.id.buttonSettings);
@@ -31,7 +40,11 @@ public class StartActivity extends Activity implements View.OnClickListener {
         editor.apply();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        startAppAd.onBackPressed();
+        super.onBackPressed();
+    }
 
     @Override
     public void onClick(View view) {

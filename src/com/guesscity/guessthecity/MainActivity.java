@@ -1,5 +1,4 @@
 package com.guesscity.guessthecity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +12,9 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
+import com.startapp.android.publish.Ad;
+import com.startapp.android.publish.AdEventListener;
+import com.startapp.android.publish.StartAppAd;
 
 import java.util.*;
 
@@ -41,6 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private final static String TEMPLATE = "_level";
     private final static List<Integer> AVAILABLE_LEVELS = Arrays.asList(1, 2, 3, 4, 5);
     private TextView textViewLevelInfo;
+    private StartAppAd startAppAd = new StartAppAd(this);
 
 
     /**
@@ -247,7 +250,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             setCurrentLevel(getCurrentLevel() + 1);
             Intent intent = new Intent(this, LevelUpActivity.class);
             startActivity(intent);
-
+            startAppAd.showAd();
+            startAppAd.loadAd();
         }
     }
 
