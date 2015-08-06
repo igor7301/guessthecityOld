@@ -231,8 +231,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (!lastQuestion() && currentLives != 0) {
                     goToNextQuestion();
 
-                }
-                else  {
+                } else {
 
                     goToNextLevel();
                 }
@@ -241,6 +240,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        startAppAd.onResume();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        startAppAd.onPause();
+    }
+
 
     private void goToNextLevel() {
         if (lastLevel() || currentLives == 0) {
@@ -266,6 +277,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        startAppAd.onBackPressed();
         super.onBackPressed();
         finish();
         setCurrentLevel(1);
