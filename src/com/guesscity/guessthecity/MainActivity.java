@@ -393,6 +393,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         Toast toast = Toast.makeText(this, getHint(keyOfActivePicture), Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
+        LinearLayout layout = (LinearLayout) toast.getView();
+
+        if (layout.getChildCount() > 0)
+        {
+            TextView SampleView = (TextView) layout.getChildAt(0);
+            SampleView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        }
+
         toast.show();
 
     }
